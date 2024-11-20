@@ -6,7 +6,7 @@ import {
   signal,
 } from '@angular/core';
 import { NavLinkComponent } from './components/nav-link.component';
-import { NavLinkModel } from './components/types';
+import { NavLinkModel } from './types';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -14,7 +14,7 @@ import { Title } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [NavLinkComponent],
-  providers: [Title],
+  providers: [Title], // hey angular, let me use this thing - provide it to me.
   template: `
     <div class="navbar bg-base-100">
       <div class="flex-1">
@@ -34,16 +34,30 @@ import { Title } from '@angular/platform-browser';
   styles: ``,
 })
 export class NavBarComponent implements OnInit {
-  #titleservice = inject(Title);
-  siteName = signal('Applied Angular');
-
+  #titleService = inject(Title);
+  siteName = signal('Applied Angular!');
+  // some fake change
   ngOnInit(): void {
-    this.#titleservice.setTitle(this.siteName());
+    this.#titleService.setTitle(this.siteName());
   }
   links = signal<NavLinkModel[]>([
     {
       text: 'Home',
       path: 'home',
+    },
+    {
+      text: 'Gift Planning',
+      path: 'gifts',
+      featureGated: 'gift-giving',
+    },
+    {
+      text: 'ATM',
+      path: 'atm',
+      featureGated: 'atm',
+    },
+    {
+      text: 'Counter',
+      path: 'counter',
     },
     {
       text: 'About Us',
@@ -52,6 +66,6 @@ export class NavBarComponent implements OnInit {
   ]);
 
   onNavigation(item: NavLinkModel) {
-    this.#titleservice.setTitle(`${this.siteName()} | ${item.text}`);
+    this.#titleService.setTitle(`${this.siteName()} | ${item.text}`);
   }
 }

@@ -1,10 +1,10 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-about',
+  selector: 'app-counter',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
-  template: ` <p>About...</p> `,
+  template: ` <div data-testid="counter-feature">Counter Stuff Goes Here</div>`,
   styles: ``,
 })
-export class AboutComponent {}
+export class CounterComponent {}
