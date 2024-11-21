@@ -5,12 +5,13 @@ import { PeopleEntryComponent } from './pages/people-entry.component';
 import { PeopleStore } from './services/people.store';
 import { PeopleTableComponent } from './pages/people-table.component';
 import { canMatchFeature } from '../../shared/feature-management/feature.guard';
+import { GiftDataService } from './services/gift-data.service';
 
 export const GIFT_ROUTES: Routes = [
   {
     path: '',
     component: GiftsComponent,
-    providers: [PeopleStore],
+    providers: [PeopleStore, GiftDataService],
     children: [
       {
         path: 'people',

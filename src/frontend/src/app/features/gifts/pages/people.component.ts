@@ -10,6 +10,7 @@ import { PeopleStore } from '../services/people.store';
   providers: [],
   template: `
     <app-gifts-status-bar />
+
     <div class="grid">
       @for (p of store.entities(); track p.id) {
         <div class="card bg-base-100 w-96 shadow-xl">

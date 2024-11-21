@@ -1,9 +1,18 @@
 import { Routes } from '@angular/router';
 import { CounterComponent } from './counter.component';
+import { UiComponent } from './pages/ui.component';
+import { PrefsComponent } from './pages/prefs.component';
+import { CounterStore } from './services/counter.store';
+import { PeopleStore } from '../gifts/services/people.store';
 
 export const COUNTER_ROUTES: Routes = [
   {
-    component: CounterComponent,
     path: '',
+    component: CounterComponent,
+    providers: [CounterStore],
+    children: [
+      { path: 'ui', component: UiComponent },
+      { path: 'prefs', component: PrefsComponent },
+    ],
   },
 ];
